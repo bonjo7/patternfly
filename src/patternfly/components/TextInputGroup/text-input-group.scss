@@ -1,4 +1,7 @@
 .pf-c-text-input-group {
+  // Component
+  --pf-c-text-input-group--BackgroundColor: var(--pf-global--BackgroundColor--100);
+
   // Base border
   --pf-c-text-input-group__text--before--BorderWidth: var(--pf-global--BorderWidth--sm);
   --pf-c-text-input-group__text--before--BorderColor: var(--pf-global--BorderColor--300);
@@ -12,13 +15,13 @@
 
   // Main
   --pf-c-text-input-group__main--first-child--not--text-input--MarginLeft: var(--pf-global--spacer--sm);
+  --pf-c-text-input-group__main--m-icon__text-input--PaddingLeft: var(--pf-global--spacer--xl);
 
-  // Search input
+  // Text input
   --pf-c-text-input-group__text-input--PaddingTop: var(--pf-global--spacer--form-element);
   --pf-c-text-input-group__text-input--PaddingRight: var(--pf-global--spacer--sm);
   --pf-c-text-input-group__text-input--PaddingBottom: var(--pf-global--spacer--form-element);
   --pf-c-text-input-group__text-input--PaddingLeft: var(--pf-global--spacer--sm);
-  --pf-c-text-input-group--m-icon__text-input--PaddingLeft: var(--pf-global--spacer--xl);
   --pf-c-text-input-group__text-input--MinWidth: 12ch;
   --pf-c-text-input-group__text-input--m-hint--Color: var(--pf-global--Color--dark-200); // matches placeholder text color
 
@@ -35,15 +38,27 @@
   --pf-c-text-input-group__utilities--c-button--PaddingRight: var(--pf-global--spacer--xs);
   --pf-c-text-input-group__utilities--c-button--PaddingLeft: var(--pf-global--spacer--xs);
 
+  // input disabled style
+  --pf-c-text-input-group--m-disabled--Color: var(--pf-global--disabled-color--100);
+  --pf-c-text-input-group--m-disabled--BackgroundColor: var(--pf-global--disabled-color--300);
+
   position: relative;
   display: flex;
+  color: var(--pf-c-text-input-group--Color, inherit);
+  background-color: var(--pf-c-text-input-group--BackgroundColor);
 
   &:hover {
     --pf-c-text-input-group__text--after--BorderBottomColor: var(--pf-c-text-input-group--hover__text--after--BorderBottomColor);
   }
 
-  &.pf-m-icon {
-    --pf-c-text-input-group__text-input--PaddingLeft: var(--pf-c-text-input-group--m-icon__text-input--PaddingLeft);
+  &.pf-m-disabled {
+    --pf-c-text-input-group__text--before--BorderWidth: 0;
+    --pf-c-text-input-group__text--after--BorderBottomWidth: 0;
+    --pf-c-text-input-group--Color: var(--pf-c-text-input-group--m-disabled--Color);
+    --pf-c-text-input-group__icon--Color: var(--pf-c-text-input-group--m-disabled--Color);
+    --pf-c-text-input-group--BackgroundColor: var(--pf-c-text-input-group--m-disabled--BackgroundColor);
+
+    pointer-events: none;
   }
 }
 
@@ -52,6 +67,10 @@
   flex: 1;
   gap: var(--pf-global--spacer--sm);
   min-width: 0;
+
+  &.pf-m-icon {
+    --pf-c-text-input-group__text-input--PaddingLeft: var(--pf-c-text-input-group__main--m-icon__text-input--PaddingLeft);
+  }
 
   > :first-child:not(.pf-c-text-input-group__text) {
     margin-left: var(--pf-c-text-input-group__main--first-child--not--text-input--MarginLeft);
